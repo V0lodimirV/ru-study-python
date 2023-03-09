@@ -1,22 +1,14 @@
 class ListExercise:
     @staticmethod
     def replace(input_list: list[int]) -> list[int]:
-        def replace_helper(input_list, max_val):
-            if not input_list:
-                return []
-            new_list = replace_helper(input_list[1:], max_val)
-
-            if input_list[0] > 0:
-                input_list[0] = max_val
-
-            return [input_list[0]] + new_list
-
-        if not input_list:
-            return []
-
-        max_val = max(input_list)
-
-        return replace_helper(input_list, max_val)
+        max_val = input_list[0] if len(input_list) > 0 else None
+        for num in input_list:
+            if num > max_val:
+                max_val = num
+        for i in range(len(input_list)):
+            if input_list[i] > 0:
+                input_list[i] = max_val
+        return input_list
 
     @staticmethod
     def search(input_list: list[int], query: int) -> int:
